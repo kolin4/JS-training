@@ -4,26 +4,24 @@ class Przedmiot {
      this.weight = weight
   }
   showInfo() {
-    console.log('name: ' + this.name, ' waga: ' + this.weight)
+    console.log('name: ' + this.name, ' weight: ' + this.weight)
   }
 }
 
 function createItem(n,w){
       if ((n.length<1) || (w < 1)){
         if((n.length<1) && (w<1)){
-            console.log("nazwa za krotka oraz niepoprawna waga")
+            console.log("name to shor and weigt is no correct")
          } else if (n.length<1){
-           console.log('nazwa za krotka')
+           console.log('name to short')
          } else {
-           console.log('zla waga')
+           console.log('wrong weight')
          }
       }else {
 
-        return new Przedmiot(n,w);
+        return new Przedmiot(String(n),w);
       }
 }
-
-
 function createItems(number,minw, maxw){
   const itemTab =[];
   if ((number < 1) || ( minw < 1) || (minw > maxw)){
@@ -110,10 +108,10 @@ class Plecak {
 
   showInfo(){
     console.log(
-        "nazwa: " + this.name ,
+        "Name: " + this.name ,
         ' Current size:' + this.currentSize,
-        ' Rozmiar plecaka: ' + this.size,
-        ' Waga plecaka:' + this.weight,
+        ' Size: ' + this.size,
+        ' Weight:' + this.weight,
         ' Compression ' + this.compression  );
   }
 
@@ -124,7 +122,11 @@ class Plecak {
         console.log('item: ' + this.items.indexOf(this.items[i]))
         for ( let key in this.items[i]){
 
-            console.log(key + " " + this.items[i][key])
+            if (key == 'name'){
+                console.log(key + " " + this.items[i][key])
+            } else if ( key == 'weight'){
+                console.log(key + " " + this.items[i][key])
+            }
 
         }
 
@@ -158,10 +160,5 @@ function createBackpack (name, size, compression, items) {
   return new Plecak(name,allWeight,compression,itemsTemp,size)
 }
 
-let x =  createBackpack('adidas', 2, 100,[{name:'acb',weight:200},{name:'acb',weight:200}])
-console.log(x.showInfo())
-console.log(x.items)
-x.remove(1);
-console.log(x.showInfo())
-x.add([{name:'xxx', weight:340},{name:'xxx', weight:340}])
-console.log(x.showDetails())
+let x =  createBackpack('adidas', 3, 100,[{name:'acb',weight:200},{name:'acb',weight:200}])
+let y = createBackpack('nike',20,100, createItems(10,1,34));
